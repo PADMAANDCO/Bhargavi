@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Padmavati and Co</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    .navbar {
+      background: linear-gradient(to bottom, #f9f9f9, #ffffff);
+      /*border-top: 3px solid #fdd835;/* /* Yellow line */
+      border-bottom: 3px solid #808080; /* Blue line */
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo-title {
+      display: flex;
+      align-items: center;
+    }
+    .logo {
+      height: 50px;
+      margin-right: 10px;
+    }
+    .brand {
+      display: flex;
+      flex-direction: column;
+    }
+    .brand h1 {
+      margin: 0;
+      font-size: 30px;
+      color: #333;
+      font-weight: bold;
+    }
+    .brand span {
+      font-size: 5px;
+      color: #444;
+    }
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #222;
+      font-size: 15px;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover {
+      color: #007bff;
+    }
+    .nav-links a.active {
+      color: #007bff;
+    }
+
+
+
+
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <div class="logo-title">
+
+      <div class="brand">
+        <h1>Padmavati & Co</h1>
+
+      </div>
+
+    </div>
+    <div class="nav-links">
+      <a href="homepage.html">Home</a>
+
+      <a href="services.html">Services</a>
+      <a href="consultus.html">Consult Us</a>
+      <a href="Buy DSC.html">Buy DSC</a>
+
+      <a href="About us.html">About Us</a>
+
+
+    </div>
+  </div>
+
+</body>
+</html>
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About Us - Padmavati & Co.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      min-height: 100vh;
+      background: #fff;
+      font-family: 'Montserrat', 'Georgia', 'Times New Roman', Times, serif;
+      color: #23292f;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    .about-main-section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0 2vw;
+      width: 100vw;
+      box-sizing: border-box;
+    }
+    .about-content {
+      width: 100%;
+      max-width: 1350px;
+      margin: 100px 0 0 0;
+      text-align: center;
+    }
+    .about-title {
+      font-family: 'Montserrat', 'Georgia', serif;
+      font-size: 2.3rem;
+      color: #262a2e;
+      font-weight: 400;
+      letter-spacing: 1.2px;
+      margin-bottom: 18px;
+      margin-top: 0;
+    }
+    .about-desc-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 48px;
+      margin-bottom: 60px;
+    }
+    .about-desc-col {
+      flex: 1 1 440px;
+      min-width: 300px;
+      max-width: 600px;
+      font-size: 1.13rem;
+      color: #353a40;
+      text-align: left;
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+    /* Profile Cards */
+    .profiles-section {
+      width: 100%;
+      max-width: 1100px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 60px;
+      margin-bottom: 60px;
+    }
+    .profile-card {
+      background: #f7fafd;
+      border-radius: 18px;
+      box-shadow: 0 2px 18px rgba(40,80,160,0.07);
+      border: 1.5px solid #e6eaf1;
+      padding: 38px 34px 28px 34px;
+      flex: 1 1 400px;
+      min-width: 330px;
+      max-width: 510px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .profile-card:hover {
+      box-shadow: 0 12px 40px rgba(40,80,160,0.13);
+      transform: translateY(-4px) scale(1.012);
+    }
+    .profile-avatar {
+      margin-bottom: 16px;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: #e3edfb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 12px rgba(80,120,200,0.10);
+      border: 2.5px solid #f6fafd;
+      overflow: hidden;
+    }
+    .profile-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      background: #f8fafc;
+    }
+    .profile-name {
+      color: #234075;
+      font-size: 1.38rem;
+      font-weight: 700;
+      margin-bottom: 2px;
+      letter-spacing: 0.5px;
+    }
+    .profile-role {
+      color: #365b99;
+      font-size: 1.09rem;
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+    .profile-exp {
+      background: #f9f3de;
+      color: #7c6832;
+      font-size: 1.01rem;
+      font-style: italic;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      padding: 2px 13px 2px 10px;
+      display: inline-block;
+    }
+    .profile-details {
+      color: #26304f;
+      font-size: 1.11rem;
+      margin-bottom: 2px;
+      line-height: 1.7;
+      text-align: center;
+    }
+    /* Contact Section */
+    .contact-section {
+      margin: 0 auto 60px auto;
+      padding: 30px 28px 22px 28px;
+      background: #f8fafc;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(36,56,94,0.04);
+      max-width: 540px;
+      border: 1.2px solid #e6eaf1;
+      align-self: center;
+      text-align: center;
+    }
+    .contact-title {
+      color: #234075;
+      font-size: 1.23rem;
+      font-family: 'Georgia', serif;
+      font-weight: 700;
+      margin-bottom: 13px;
+      letter-spacing: 0.5px;
+    }
+    .contact-details {
+      font-size: 1.11rem;
+      color: #26304f;
+      margin-bottom: 7px;
+    }
+    .contact-details a {
+      color: #365b99;
+      text-decoration: none;
+      font-weight: 600;
+      word-break: break-all;
+    }
+    .address-section {
+      margin-top: 14px;
+    }
+    .address-title {
+      color: #234075;
+      font-size: 1.06rem;
+      font-family: 'Georgia', serif;
+      font-weight: 700;
+      margin-bottom: 4px;
+      letter-spacing: 0.5px;
+    }
+    .address-details {
+      font-size: 1.07rem;
+      color: #24304b;
+      margin-bottom: 4px;
+      white-space: pre-line;
+    }
+    @media (max-width: 1300px) {
+      .about-content { max-width: 100vw; }
+      .profiles-section { gap: 24px; }
+    }
+    @media (max-width: 900px) {
+      .about-content { margin-top: 60px; }
+      .about-desc-row { flex-direction: column; gap: 0; }
+      .profiles-section { flex-direction: column; gap: 18px; }
+      .profile-card { min-width: 0; max-width: 100%; padding: 24px 5vw 16px 5vw; }
+      .contact-section { padding: 13px 2vw 10px 2vw; }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="about-main-section">
+    <div class="about-content">
+      <div class="about-title">About Padmavati &amp; Co.</div>
+      <div class="about-desc-row">
+        <div class="about-desc-col">
+          Padmavati &amp; Co. is a professional services firm offering expert solutions in Direct Tax, Indirect Tax, Labour Laws, GST, TDS, and digital compliance. With a strong focus on ethics and results, we have handled numerous GST, TDS, and Income Tax notices and proceedings for our clients, ensuring clarity and compliance every step of the way.
+        </div>
+        <div class="about-desc-col">
+          Our team blends in-depth tax expertise with innovative digital tools, supporting businesses with web solutions, DSC facilitation, financial automation, and more. We are committed to delivering trustworthy advice and modern technology for your business growth and regulatory needs.
+        </div>
+      </div>
+    </div>
+
+    <div class="profiles-section">
+      <!-- Ramesh DN Profile -->
+      <div class="profile-card">
+        <div  title="Ramesh DN">
+
+        </div>
+        <div class="profile-name">Ramesh DN</div>
+        <div class="profile-role">Auditor &amp; Tax Consultant</div>
+        <div class="profile-exp">Experience: 8 Years</div>
+        <div class="profile-details">
+          <p style="text-align: justify;">
+          Ramesh DN is an accomplished auditor and tax consultant, recognized for his deep expertise in Direct Tax, Indirect Tax, and Labour Laws. Specializing in GST and TDS, he has effectively managed multiple GST, TDS, and Income Tax notices and proceedings for a diverse clientele. His practical knowledge covers compliance, advisory, and representation before tax authorities, making him an invaluable partner for businesses seeking clarity and confidence in a complex regulatory landscape.
+          </p>
+        </div>
+      </div>
+      <!-- Bhargavi DS Profile -->
+      <div class="profile-card">
+        <div  title="Bhargavi DS">
+          <!-- Example professional woman illustration, you should replace the src below with your uploaded image for Bhargavi -->
+
+        </div>
+        <div class="profile-name">Bhargavi DS</div>
+        <div class="profile-role">Computer Science Engineer</div>
+        <div class="profile-exp">Experience: 1 Year</div>
+        <div class="profile-details">
+          <p style="text-align: justify;">
+          Bhargavi DS is a skilled engineer with expertise in web page creation, DSC facilitation, and the development of financial and Excel-based tools. She is passionate about building software applications and digital solutions that streamline business processes. Technical acumen and creative approach help organizations achieve automation, efficiency, and digital transformation for modern business needs.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-section">
+      <div class="contact-title">Contact Us</div>
+      <div class="contact-details">
+        Phone: <a href="tel:+919632207411">+91 96322 07411</a>
+      </div>
+      <div class="contact-details">
+        WhatsApp: <a href="https://wa.me/919632207411" target="_blank">wa.me/919632207411</a>
+      </div>
+      <div class="contact-details">
+        Email: <a href="mailto:padmavatiandco2021@gmail.com">padmavatiandco2021@gmail.com</a>
+      </div>
+      <div class="address-section">
+        <div class="address-title">Address</div>
+        <div class="address-details">
+          # 537, 8th Cross, Chaitanyanagar,<br>
+          Doddaballapura, Bangalore - 561203.
+        </div>
+      </div>
+    </div>
+  </div>
+<div style="height:60px"></div>
+<div class="wa-footer" style="position: fixed; right: 30px; bottom: 30px; z-index: 999;">
+  <a href="https://wa.me/919632207411" target="_blank" class="wa-link" title="Contact us on WhatsApp" style="display: inline-block;">
+    <svg width="70" height="70" viewBox="0 0 448 512">
+      <path fill="#25D366" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+    </svg>
+  </a>
+</div>
+</body>
+</html>
+
+<footer style="background: linear-gradient(120deg, #2e3b54 0%, #1e8edc 100%); padding: 14px 0 0 0; color: #fff; border-top: 2px solid #e9f3fb; position: relative; font-size: 0.95em;">
+  <div style="max-width: 1600px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px 0;">
+    <!-- Company -->
+    <div style="min-width: 180px; margin-left: 22px;">
+      <div style="font-size: 1em; font-weight: 700; margin-bottom: 8px;">Company</div>
+      <div style="margin-bottom: 2px;">
+        <a href="javascript:void(0)" id="privacy-link" style="color:#fff; text-decoration:none; font-size:0.97em; display:block; margin-bottom:4px;">Privacy Policy</a>
+        <a href="javascript:void(0)" id="terms-link" style="color:#fff; text-decoration:none; font-size:0.97em; display:block; margin-bottom:4px;">Terms &amp; Conditions</a>
+        <a href="javascript:void(0)" id="refund-link" style="color:#fff; text-decoration:none; font-size:0.97em; display:block; margin-bottom:4px;">Refund Policy</a>
+        <a href="javascript:void(0)" id="shipping-link" style="color:#fff; text-decoration:none; font-size:0.97em; display:block; margin-bottom:4px;">Shipping Policy</a>
+        <a href="About us.html" target="_blank" rel="noopener" style="color:#fff; text-decoration:none; font-size:0.97em; display:block; margin-bottom:4px;">About us</a>
+      </div>
+    </div>
+    <!-- Quick Links -->
+    <div style="min-width: 180px;">
+      <div style="font-size: 1em; font-weight: 700; margin-bottom: 8px;">Quick Links</div>
+      <div style="margin-bottom: 2px;">
+        <a href="homepage.html" style="color:#fff; text-decoration:none; font-size:0.97em; display:block; margin-bottom:4px;">Home</a>
+        <a href="services.html" style="color:#fff; text-decoration:none; font-size:0.97em; display:block; margin-bottom:4px;">Services</a>
+        <a href="consultus.html" style="color:#fff; text-decoration:none; font-size:0.97em; display:block; margin-bottom:4px;">Consult Us</a>
+        <a href="Buy DSC.html" style="color:#fff; text-decoration:none; font-size:0.97em; display:block; margin-bottom:4px;">Buy DSC</a>
+        <a href="About us.html" style="color:#fff; text-decoration:none; font-size:0.97em; display:block; margin-bottom:4px;">About us</a>
+      </div>
+    </div>
+    <!-- Contact Us -->
+    <div style="min-width: 240px;">
+      <div style="font-size: 1em; font-weight:700; margin-bottom: 8px;">Contact us</div>
+      <div style="font-size:0.97em; margin-bottom:2px;">
+        <span style="color:#ea7dc7; font-size:1.05em; vertical-align:middle;">&#128222;</span>
+        <a href="tel:9632207411" style="color:#fff; text-decoration:none; margin-left:5px;">9632207411</a>
+      </div>
+      <div style="font-size:0.97em; margin-bottom:2px;">
+        <span style="color:#6be6f7; font-size:1.05em; vertical-align:middle;">&#128231;</span>
+        <a href="mailto:padmavatiandco2021@gmail.com" style="color:#fff; text-decoration:none; margin-left:5px;">padmavatiandco2021@gmail.com</a>
+      </div>
+      <div style="font-size:0.97em;">
+        <span style="color:#e8eaed; font-size:1em; vertical-align:middle;">&#128205;</span>
+        <span style="margin-left:5px;">
+          D No.537, 8th Cross, Chaitanya Nagara, Doddaballapura, <br>Bangalore - 561203, India
+        </span>
+      </div>
+    </div>
+    <!-- Follow Us -->
+    <div style="min-width:110px; margin-right:22px;">
+      <div style="font-size: 1em; font-weight:700; margin-bottom: 8px;">Follow Us</div>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <a href="https://facebook.com/" target="_blank" rel="noopener" aria-label="Facebook"
+           style="color:#fff; font-size:1.1em; text-decoration:none;">
+          <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.594 0 0 .593 0 1.326v21.348C0 23.406.594 24 1.325 24h11.495v-9.294H9.691v-3.622h3.129V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.918.001c-1.504 0-1.797.716-1.797 1.764v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.406 24 24 23.406 24 22.674V1.326C24 .593 23.406 0 22.675 0"/></svg>
+        </a>
+        <a href="https://linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn"
+           style="color:#fff; font-size:1.1em; text-decoration:none;">
+          <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-9h3v9zm-1.5-10.3c-.97 0-1.75-.79-1.75-1.75s.78-1.75 1.75-1.75c.97 0 1.75.79 1.75 1.75s-.78 1.75-1.75 1.75zm13.5 10.3h-3v-4.5c0-1.07-.02-2.43-1.48-2.43-1.48 0-1.71 1.15-1.71 2.35v4.58h-3v-9h2.89v1.23h.04c.4-.75 1.38-1.54 2.85-1.54 3.05 0 3.61 2.01 3.61 4.62v4.69z"/></svg>
+        </a>
+        <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"
+           style="color:#fff; font-size:1.1em; text-decoration:none;">
+          <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.337 3.608 1.312.974.974 1.25 2.242 1.312 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.337 2.633-1.312 3.608-.974.974-2.242 1.25-3.608 1.312-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.337-3.608-1.312-.974-.974-1.25-2.242-1.312-3.608C2.175 15.647 2.163 15.267 2.163 12s.012-3.584.07-4.85c.062-1.366.337-2.633 1.312-3.608.974-.974 2.242-1.25 3.608-1.312C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.741 0 8.333.013 7.053.072c-1.676.077-2.823.361-3.822 1.36C2.234 2.234 1.95 3.382 1.872 5.057.813 8.341.813 15.659 1.872 18.943c.078 1.675.362 2.823 1.36 3.822 1 .999 2.147 1.283 3.822 1.36C8.333 23.987 8.741 24 12 24s3.667-.013 4.947-.072c1.675-.077 2.823-.361 3.822-1.36.999-.999 1.283-2.147 1.36-3.822C23.187 15.659 23.187 8.341 22.128 5.057c-.077-1.675-.361-2.823-1.36-3.822-.999-.999-2.147-1.283-3.822-1.36C15.667.013 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a3.999 3.999 0 1 1 0-7.998 3.999 3.999 0 0 1 0 7.998zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div style="text-align:center; margin-top:14px; margin-bottom:7px;">
+    <a id="disclaimer-link" href="#" style="font-size:1em; color:#ffc94d; font-weight:600; display:inline-block; text-decoration:underline; cursor:pointer;">Disclaimer</a>
+    <div style="font-size:0.96em; color:#fff; margin-top:2px;">For our full disclaimer, please <span id="disclaimer-link2" style="color:#65eaff; text-decoration:underline; cursor:pointer;">click here</span>.</div>
+  </div>
+  <div style="text-align:center; font-size:0.98em; color:#fff; font-weight:600; margin-bottom:3px;">
+    &#169; 2025 Padmavati &amp; Co. All rights reserved.
+  </div>
+
+  <!-- Disclaimer Modal -->
+  <div id="disclaimer-modal" style="display:none; position:fixed; z-index:9999; left:0; top:0; width:100vw; height:100vh; background:rgba(40,53,84,0.38);">
+    <div style="position:relative; max-width:500px; margin:40px auto; background:#f7f7fa; border-radius:12px; box-shadow:0 0 36px rgba(40,53,84,0.13); padding:24px 16px 16px 16px; font-family:'Montserrat', Arial, sans-serif; overflow-y:auto; max-height:92vh;">
+      <button onclick="closeDisclaimerModal();" aria-label="Close"
+        style="position:absolute; right:12px; top:10px; background:none; border:none; font-size:1.22em; color:#1161b6; cursor:pointer;">&times;</button>
+      <h2 style="color:#1161b6; font-size:1.07em; font-weight:700; margin-top:2px; margin-bottom:10px;">Disclaimer</h2>
+      <div style="font-size:0.97em; color:#222;">
+        <p><strong>Padmavati &amp; Co.</strong> is a firm of qualified auditors and tax consultants committed to providing accurate, reliable, and professional information. The content on this website and any communications from our firm are intended for general informational purposes only.</p>
+        <p>While every effort is made to ensure the accuracy and reliability of the information presented, Padmavati &amp; Co. makes no warranties or representations, express or implied, regarding the completeness, accuracy, or suitability of the information for any particular purpose. The information provided does not constitute audit, accounting, tax, financial, legal, or other professional advice, and should not be relied upon as such.</p>
+        <p>Users are encouraged to trust our expertise, but we strongly advise that you consult directly with our qualified professionals before making any decisions or taking action based on the information provided herein. Each situation is unique, and advice should always be tailored to your specific circumstances.</p>
+        <p>Padmavati &amp; Co., its partners, and employees accept no responsibility or liability for any loss or damage, whether direct, indirect, or consequential, that may result from the use of, or reliance on, information contained on this website.</p>
+        <p>By using this website, you acknowledge and agree to this disclaimer, and understand that your use of the information is at your own risk.</p>
+        <p>For tailored advice or assistance, please contact our team of qualified professionals.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Policy Popup Modal Structure (one modal, dynamic content) -->
+  <div id="policy-modal" style="display:none; position:fixed; z-index:9998; left:0; top:0; width:100vw; height:100vh; background:rgba(40,53,84,0.38);">
+    <div style="position:relative; max-width:520px; margin:40px auto; background:#f6f8fa; border-radius:12px; box-shadow:0 0 36px rgba(40,53,84,0.13); padding:26px 14px 14px 14px; font-family:'Montserrat', Arial, sans-serif; overflow-y:auto; max-height:92vh;">
+      <button onclick="closePolicyModal();" aria-label="Close"
+        style="position:absolute; right:12px; top:10px; background:none; border:none; font-size:1.22em; color:#1161b6; cursor:pointer;">&times;</button>
+      <div id="policy-modal-inner"></div>
+    </div>
+  </div>
+  <style>
+    footer a:hover {
+      color: #65eaff !important;
+      text-decoration: underline !important;
+      letter-spacing: .01em;
+    }
+    @media (max-width: 1000px) {
+      footer > div[style*="max-width: 1600px"] {
+        flex-direction: column !important;
+        gap: 3px !important;
+        align-items:center !important;
+      }
+      footer > div[style*="max-width: 1600px"] > div {
+        min-width: unset !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+      }
+    }
+    #policy-modal-content, #disclaimer-modal > div {
+      color: #222;
+      border: 1.5px solid #ccc;
+    }
+    #policy-modal-content h2, #disclaimer-modal h2 {
+      color: #1161b6 !important;
+    }
+    #policy-modal-content a { color: #1161b6; }
+    #policy-modal-content ol { color: #222; }
+  </style>
+  <script>
+    // Policy content map (all backgrounds will be white/grey)
+    const policyContents = {
+      privacy: `
+        <h2 style="color:#1161b6; font-size:1.07em; font-weight:700; margin-top:0;">Privacy Policy</h2>
+        <div style="font-size:0.97em; color:#222; margin-bottom:12px;">
+          <strong>Effective Date:</strong> 01-06-2025<br>
+          <strong>Website:</strong> www.padmavatiandco.com<br>
+          <strong>Entity Name:</strong> Padmavati &amp; Co (Proprietorship)<br>
+          <strong>Contact:</strong> Ramesh DN | Phone: 9632207411 | Email: <a href="mailto:padmavatiandco2021@gmail.com" style="color:#1161b6;">padmavatiandco2021@gmail.com</a><br>
+          <strong>Address:</strong> D No.537, 8th Cross, Chaitanya Nagara, Doddaballapura, Bangalore - 561203, India
+        </div>
+        <ol style="font-size:0.97em; padding-left:17px; color:#222;">
+          <li style="margin-bottom:8px;">
+            <strong>Introduction</strong><br>
+            Padmavati &amp; Co is committed to safeguarding your privacy. This Privacy Policy outlines how we collect, use, store, and disclose your information when you visit or interact with our website at www.padmavatiandco.com. By accessing this site, you agree to the practices described in this policy.
+          </li>
+          <li style="margin-bottom:8px;">
+            <strong>Information We Collect</strong><br>
+            We may collect and process the following personal data:
+            <ul style="margin-top:2px;">
+              <li>Name</li>
+              <li>Email address</li>
+              <li>Location</li>
+              <li>Payment information (only processed through secure third-party payment gateways)</li>
+              <li>Form submissions</li>
+              <li>Cookies and usage data</li>
+              <li>Details from third-party tools (used for analytics and site performance)</li>
+            </ul>
+          </li>
+          <li style="margin-bottom:8px;">
+            <strong>Purpose of Data Collection</strong><br>
+            We collect your data only for the purpose of:
+            <ul style="margin-top:2px;">
+              <li>Fulfilling your service or order requests</li>
+              <li>Communicating with you regarding your orders or inquiries</li>
+              <li>Processing payments securely</li>
+            </ul>
+          </li>
+          <li style="margin-bottom:8px;">
+            <strong>Use of Data</strong><br>
+            Your personal data is:
+            <ul style="margin-top:2px;">
+              <li>Used solely to process specific client requests</li>
+              <li>Shared only with verified third-party services such as payment gateways for order completion</li>
+              <li>Processed in accordance with the Indian Information Technology Act</li>
+            </ul>
+          </li>
+          <li style="margin-bottom:8px;">
+            <strong>Cookies and Tracking</strong><br>
+            We use cookies for:
+            <ul style="margin-top:2px;">
+              <li>User authentication</li>
+              <li>Website personalization</li>
+              <li>Enhancing browsing experience</li>
+            </ul>
+            You can manage cookies through your browser settings.
+          </li>
+          <li style="margin-bottom:8px;">
+            <strong>Third-Party Services</strong><br>
+            We use trusted third-party services, such as payment processors, that may collect information as per their own privacy policies. We do not store any of your payment details on our servers.
+          </li>
+          <li style="margin-bottom:8px;">
+            <strong>User Rights and Grievance Redressal</strong><br>
+            If you wish to:
+            <ul style="margin-top:2px;">
+              <li>Access your data</li>
+              <li>Request correction or deletion</li>
+              <li>Raise a concern</li>
+            </ul>
+            Please contact our Grievance Officer:<br>
+            Name: Ramesh DN<br>
+            Phone: 9632207411<br>
+            Email: <a href="mailto:padmavatiandco2021@gmail.com" style="color:#1161b6;">padmavatiandco2021@gmail.com</a>
+          </li>
+          <li style="margin-bottom:8px;">
+            <strong>Data Storage and Retention</strong><br>
+            We do not permanently store any client data on our servers.<br>
+            Data that is collected may be retained for a period up to 5 years to comply with legal and regulatory requirements.
+          </li>
+          <li style="margin-bottom:8px;">
+            <strong>Changes to the Policy</strong><br>
+            We may revise this Privacy Policy from time to time. All updates will be posted on this page with a new effective date.
+          </li>
+          <li style="margin-bottom:8px;">
+            <strong>Governing Law</strong><br>
+            This Privacy Policy is governed by and construed in accordance with Indian laws. Any disputes arising under or in connection with this policy shall be subject to the jurisdiction of courts located in Bangalore, Karnataka, India.
+          </li>
+        </ol>
+        <p style="font-size:0.95em; color:#333;">If you have any questions or concerns about this Privacy Policy, please contact us using the details provided above.</p>
+      `,
+      terms: `
+        <h2 style="color:#1161b6; font-size:1.07em; font-weight:700; margin-top:0;">Terms &amp; Conditions</h2>
+        <div style="font-size:0.97em; color:#222; margin-bottom:12px;">
+          <strong>Effective Date:</strong> 01-06-2025<br>
+          <strong>Website:</strong> www.padmavatiandco.com<br>
+          <strong>Entity Name:</strong> Padmavati &amp; Co (Proprietorship)
+        </div>
+        <ol style="font-size:0.97em; padding-left:17px; color:#222;">
+          <li style="margin-bottom:8px;">
+            <strong>Acceptance of Terms</strong><br>
+            By accessing or using our website and services, you agree to be bound by these Terms &amp; Conditions. If you do not agree to these terms, please do not use our services.
+          </li>
+          <li style="margin-bottom:8px;">
+            <strong>Service Description</strong><br>
+            Padmavati &amp; Co provides professional consultation, compliance, and other related services as described on the website.
+          </li>
+          <li style="margin-bottom:8px;">
+            <strong>User Responsibilities</strong><br>
+            You agree to provide accurate information and use our services only for lawful purposes.
+          </li>
+          <li style="margin-bottom:8px;">
+            <strong>Limitation of Liability</strong><br>
+            Padmavati &amp; Co is not liable for any indirect, incidental, or consequential damages arising from the use of our services or website.
+          </li>
+          <li style="margin-bottom:8px;">
+            <strong>Intellectual Property</strong><br>
+            All content, branding, and materials on this website are the property of Padmavati &amp; Co and may not be used or reproduced without permission.
+          </li>
+          <li style="margin-bottom:8px;">
+            <strong>Amendments</strong><br>
+            We reserve the right to update or modify these Terms &amp; Conditions at any time. Changes will be effective upon posting.
+          </li>
+          <li style="margin-bottom:8px;">
+            <strong>Governing Law</strong><br>
+            These Terms &amp; Conditions are governed by Indian law. Disputes shall be subject to the jurisdiction of courts in Bangalore, Karnataka, India.
+          </li>
+        </ol>
+        <p style="font-size:0.95em; color:#333;">If you have any questions about these Terms &amp; Conditions, please contact us at <a href="mailto:padmavatiandco2021@gmail.com" style="color:#1161b6;">padmavatiandco2021@gmail.com</a></p>
+      `,
+      refund: `
+        <h2 style="color:#1161b6; font-size:1.07em; font-weight:700; margin-top:0;">Refund Policy</h2>
+        <div style="font-size:0.97em; color:#222; margin-bottom:12px;">
+          <strong>Effective Date:</strong> 01-06-2025<br>
+          <strong>Website:</strong> www.padmavatiandco.com<br>
+          <strong>Entity Name:</strong> Padmavati &amp; Co (Proprietorship)
+        </div>
+        <ol style="font-size:0.97em; padding-left:17px; color:#222;">
+          <li style="margin-bottom:8px;">
+            <strong>Consultation Fees</strong><br>
+            Please note that <span style="color:#e96ac5; font-weight:600;">consultation fees paid are non-refundable</span> under any circumstances, once the consultation has been availed or scheduled.
+          </li>
+          <li style="margin-bottom:8px;">
+            <strong>Other Services</strong><br>
+            Refunds for services other than consultation will be considered only if the service has not commenced and a written request is received within 2 days of payment. Once service delivery has begun, no refund will be processed.
+          </li>
+          <li style="margin-bottom:8px;">
+            <strong>Processing Refunds</strong><br>
+            If eligible for a refund, the amount will be processed within 7-10 working days to the original payment method.
+          </li>
+          <li style="margin-bottom:8px;">
+            <strong>Contact</strong><br>
+            For refund requests or queries, write to <a href="mailto:padmavatiandco2021@gmail.com" style="color:#1161b6;">padmavatiandco2021@gmail.com</a> or call 9632207411.
+          </li>
+        </ol>
+        <p style="font-size:0.95em; color:#333;">Padmavati &amp; Co reserves the right to update this policy at any time without prior notice.</p>
+      `,
+      shipping: `
+        <h2 style="color:#1161b6; font-size:1.07em; font-weight:700; margin-top:0;">Shipping Policy</h2>
+        <div style="font-size:0.97em; color:#222; margin-bottom:12px;">
+          <strong>Effective Date:</strong> 01-06-2025<br>
+          <strong>Website:</strong> www.padmavatiandco.com<br>
+          <strong>Entity Name:</strong> Padmavati &amp; Co (Proprietorship)
+        </div>
+        <ol style="font-size:0.97em; padding-left:17px; color:#222;">
+          <li style="margin-bottom:8px;">
+            <strong>Delivery of Documents</strong><br>
+            Most services offered by Padmavati &amp; Co are digital/consultation based. For services requiring physical documents (e.g., Digital Signature Certificates), shipping will be via trusted courier partners.
+          </li>
+          <li style="margin-bottom:8px;">
+            <strong>Shipping Timeline</strong><br>
+            Physical documents will be dispatched within 3 working days after all required information and payments are received.
+          </li>
+          <li style="margin-bottom:8px;">
+            <strong>Delivery Areas</strong><br>
+            We ship within India to addresses serviceable by our courier partners.
+          </li>
+          <li style="margin-bottom:8px;">
+            <strong>Shipping Charges</strong><br>
+            Shipping charges (if any) will be communicated at the time of order.
+          </li>
+          <li style="margin-bottom:8px;">
+            <strong>Tracking</strong><br>
+            Tracking details will be shared on your registered email after dispatch.
+          </li>
+          <li style="margin-bottom:8px;">
+            <strong>Contact</strong><br>
+            For shipping queries, please contact <a href="mailto:padmavatiandco2021@gmail.com" style="color:#1161b6;">padmavatiandco2021@gmail.com</a> or call 9632207411.
+          </li>
+        </ol>
+        <p style="font-size:0.95em; color:#333;">Padmavati &amp; Co reserves the right to update this shipping policy at any time without prior notice.</p>
+      `
+    };
+
+    // Policy modal functions
+    function openPolicyModal(type) {
+      document.getElementById('policy-modal-inner').innerHTML = policyContents[type];
+      document.getElementById('policy-modal').style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+    function closePolicyModal() {
+      document.getElementById('policy-modal').style.display = 'none';
+      document.body.style.overflow = '';
+    }
+    document.getElementById('privacy-link').onclick = function() { openPolicyModal('privacy'); };
+    document.getElementById('terms-link').onclick = function() { openPolicyModal('terms'); };
+    document.getElementById('refund-link').onclick = function() { openPolicyModal('refund'); };
+    document.getElementById('shipping-link').onclick = function() { openPolicyModal('shipping'); };
+    document.getElementById('policy-modal').onclick = function(e) {
+      if (e.target === this) closePolicyModal();
+    };
+
+    // Disclaimer modal functions
+    function openDisclaimerModal() {
+      document.getElementById('disclaimer-modal').style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+    function closeDisclaimerModal() {
+      document.getElementById('disclaimer-modal').style.display = 'none';
+      document.body.style.overflow = '';
+    }
+    document.getElementById('disclaimer-link').onclick = function(e) { e.preventDefault(); openDisclaimerModal(); };
+    document.getElementById('disclaimer-link2').onclick = function(e) { e.preventDefault(); openDisclaimerModal(); };
+    document.getElementById('disclaimer-modal').onclick = function(e) {
+      if (e.target === this) closeDisclaimerModal();
+    };
+  </script>
+</footer>
