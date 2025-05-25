@@ -249,3 +249,33 @@
                 "amount": amount,
                 "currency": "INR",
                 "name": "Padmavati & Co",
+                "description": "Consultation Fee - ₹499",
+                "handler": function (response){
+                    alert("Payment successful! Payment ID: " + response.razorpay_payment_id);
+                },
+                "prefill": {
+                    "name": name,
+                    "email": email,
+                    "contact": mobile
+                },
+                "notes": {
+                    "address": address
+                },
+                "theme": {
+                    "color": "#244675",
+                    "backdrop_color": "#f4f6fb",
+                    "hide_topbar": false
+                },
+                "modal": {
+                    "ondismiss": function(){},
+                    "escape": true,
+                    "backdropclose": true
+                }
+                // Default Razorpay dynamic popup, all payment options shown.
+            };
+            const rzp1 = new Razorpay(options);
+            rzp1.open();
+        });
+    </script>
+</body>
+</html>
