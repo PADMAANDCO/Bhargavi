@@ -4,14 +4,20 @@
   <meta charset="UTF-8">
   <title>Padmavati and Co</title>
   <style>
+
+    :root {
+
+      --primary-color: #1F4E79;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
+      color: #333;
     }
-
-
     .navbar {
-      background-color: #d3d3d3; /* Light grey background */
+
+      background: linear-gradient(to bottom, #f9f9f9, #ffffff);
       /*border-top: 3px solid #fdd835;/* /* Yellow line */
       border-bottom: 3px solid #808080; /* Blue line */
       padding: 10px 20px;
@@ -19,6 +25,20 @@
       align-items: center;
       justify-content: space-between;
     }
+
+    :root {
+  --primary-color: #1F4E79;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+}
+
+h1, h2, h3, .nav-link, .section-title {
+  color: var(--primary-color);
+}
+
     .logo-title {
       display: flex;
       align-items: center;
@@ -87,6 +107,194 @@
     </div>
   </div>
 
+</body>
+</html>
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Padmavati & Co | Your Trusted Auditing and Tax Partner</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Use Montserrat and Roboto fonts for styling and sizing similar to the services page -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #24324a;
+      --secondary: #5b6e7d;
+      --accent: #1b7ed6;
+      --light: #f8f8f8;
+      --card-bg: #fff;
+      --grey: #e9ecef;
+      --header-blue: #216093;
+      --industry-blue: #133b61;
+    }
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: var(--light);
+      font-family: 'Montserrat', Arial, sans-serif;
+      color: var(--primary);
+      box-sizing: border-box;
+    }
+    body {
+      min-height: 100vh;
+    }
+    /* Header */
+    .header-area {
+      margin-top: 40px;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    .header-area h1 {
+      font-size: 2.5em;
+      color: var(--header-blue);
+      font-weight: 800;
+      letter-spacing: 2px;
+      margin: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      border-bottom: none;
+    }
+    .header-area p {
+      font-size: 1.15em;
+      color: var(--header-blue);
+      letter-spacing: 1px;
+      margin: 5px 0 0 0;
+      font-weight: 500;
+      font-family: 'Roboto', Arial, sans-serif;
+    }
+    /* Welcome Title */
+    .welcome-title {
+      max-width: 900px;
+      margin: 48px auto 0 auto;
+      font-size: 1.3em;
+      color: var(--header-blue);
+      font-weight: 800;
+      text-align: left;
+      font-family: 'Montserrat', Arial, sans-serif;
+      letter-spacing: .02em;
+    }
+    /* Intro Content */
+    .welcome-content {
+      max-width: 950px;
+      margin: 18px auto 0 auto;
+      font-size: 1.11em;
+      color: var(--primary);
+      line-height: 1.6;
+      font-family: 'Roboto', Arial, sans-serif;
+      text-align: left;
+      overflow-wrap: break-word;
+      word-break: break-word;
+      white-space: normal;
+      font-weight: 500;
+    }
+    .welcome-content p {
+      margin: 0 0 12px 0;
+      font-size: 1.04em;
+      font-family: 'Roboto', Arial, sans-serif;
+    }
+    .welcome-content b, .welcome-content strong {
+      font-weight: 700;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+    .welcome-content em {
+      font-style: italic;
+      font-family: 'Roboto', Arial, sans-serif;
+    }
+    /* Industry Section */
+    .industry-section {
+      margin-top: 60px;
+      margin-bottom: 60px;
+      text-align: center;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+    .industry-section h2 {
+      color: var(--industry-blue);
+      font-size: 1.3em;
+      font-weight: 800;
+      letter-spacing: 1px;
+      margin-bottom: 36px;
+      margin-top: 0;
+      text-transform: uppercase;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+    .industry-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px 36px;
+      justify-content: center;
+      max-width: 950px;
+      margin: 0 auto;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+    .industry-btn {
+      min-width: 200px;
+      font-size: 1.05em;
+      padding: 12px 0;
+      border: 2px solid var(--industry-blue);
+      border-radius: 6px;
+      background: #fff;
+      color: var(--industry-blue);
+      cursor: pointer;
+      font-family: 'Roboto', Arial, sans-serif;
+      margin-bottom: 10px;
+      font-weight: 700;
+      transition: background 0.15s, color 0.15s, box-shadow 0.16s;
+      box-shadow: 0 2px 7px rgba(30,60,120,0.03);
+    }
+    .industry-btn:hover {
+      background: #e6f2fa;
+      color: var(--header-blue);
+      box-shadow: 0 4px 16px rgba(33,96,147,0.08);
+    }
+    /* WhatsApp */
+
+  </style>
+</head>
+<body>
+  <div class="header-area">
+    <h1>Padmavati & Co</h1>
+    <p>Your Trusted Partner in Auditing and Tax Solutions</p>
+  </div>
+  <div class="welcome-title">
+    Welcome To Padmavati & Co - Auditors and Tax Consultants
+  </div>
+  <div class="welcome-content">
+    <p style="text-align: justify;">
+      At <b>Padmavati & Co</b>, we specialize in providing end-to-end <b>Audit, Taxation, Management Consultancy Services, and Business Advisory Services</b> to individuals, firms, and corporate clients.
+    </p>
+    <p style="text-align: justify;">
+      With a deep commitment to ethical practices and client confidentiality, our approach blends professional excellence with personalized attention. We believe that in today’s dynamic regulatory and tax environment, every business deserves clear guidance, accurate reporting, and strategic insight.
+    </p>
+    <p style="text-align: justify;">
+      Whether you’re a growing business seeking compliance support or an individual looking for tax advice, our team is here to assist you.
+    </p>
+  </div>
+  <div class="industry-section">
+    <h2>INDUSTRY SPECIALIZATION</h2>
+    <div class="industry-grid">
+      <button class="industry-btn">Real Estate</button>
+      <button class="industry-btn">Logistics</button>
+      <button class="industry-btn">Iron &amp; Steel</button>
+      <button class="industry-btn">Construction</button>
+      <button class="industry-btn">Manufacturing</button>
+      <button class="industry-btn">Retail</button>
+      <button class="industry-btn">Information Technology</button>
+      <button class="industry-btn">Food Industry</button>
+    </div>
+  </div>
+  <div style="height:60px"></div>
+<div class="wa-footer" style="position: fixed; right: 30px; bottom: 30px; z-index: 999;">
+  <a href="https://wa.me/919632207411" target="_blank" class="wa-link" title="Contact us on WhatsApp" style="display: inline-block;">
+    <svg width="70" height="70" viewBox="0 0 448 512">
+      <path fill="#25D366" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+    </svg>
+  </a>
+</div>
 </body>
 </html>
 
