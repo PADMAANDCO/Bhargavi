@@ -190,6 +190,18 @@
                         style="height:36px;"
                     ></textarea>
 
+                    <label for="aadhar">Aadhar Number</label>
+                    <input
+                        type="text" id="aadhar" name="aadhar" placeholder="Enter your 12-digit Aadhar number"
+                        pattern="[0-9]{12}" required maxlength="12" autocomplete="off"
+                    >
+
+                    <label for="pan">PAN Number</label>
+                    <input
+                        type="text" id="pan" name="pan" placeholder="Enter your PAN number"
+                        pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" required maxlength="10" autocomplete="off" style="text-transform:uppercase"
+                    >
+
                     <button type="submit" class="pay-btn">Pay Now</button>
                 </form>
             </div>
@@ -200,7 +212,7 @@
         </div>
     </div>
     <script>
-        // Replace with your Razorpay Key ID
+        // Razorpay Key ID
         const RAZORPAY_KEY_ID = "rzp_live_Dz8mM0CsKuFU5F";
 
         document.getElementById('checkoutForm').addEventListener('submit', function(e) {
@@ -211,9 +223,26 @@
             const mobile = document.getElementById('mobile').value.trim();
             const email = document.getElementById('email').value.trim();
             const address = document.getElementById('address').value.trim();
+            const aadhar = document.getElementById('aadhar').value.trim();
+            const pan = document.getElementById('pan').value.trim().toUpperCase();
 
             // Rs.2000 = 200000 paise
             const amount = 200000;
+
+            // Collect all form data for admin panel display
+            // You can send this data to server via AJAX/fetch before opening Razorpay if needed
+
+            // Example: Collect user details to process on backend/admin panel
+            const userDetails = {
+                name,
+                mobile,
+                email,
+                address,
+                aadhar,
+                pan
+            };
+            // For demo: Log to console (REPLACE with backend API call in production)
+            console.log("User Details for Admin Panel:", userDetails);
 
             const options = {
                 "key": RAZORPAY_KEY_ID,
@@ -223,6 +252,7 @@
                 "description": "Buy DSC - ₹2000",
                 "handler": function (response){
                     alert("Payment successful! Payment ID: " + response.razorpay_payment_id);
+                    // Optionally, send payment and userDetails to backend for admin panel
                 },
                 "prefill": {
                     "name": name,
@@ -230,7 +260,9 @@
                     "contact": mobile
                 },
                 "notes": {
-                    "address": address
+                    "address": address,
+                    "aadhar": aadhar,
+                    "pan": pan
                 },
                 "theme": {
                     "color": "#244675",
