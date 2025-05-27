@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -190,6 +191,12 @@
                         style="height:36px;"
                     ></textarea>
 
+                    <label for="matter">Briefly describe the matter you wish to consult with us</label>
+                    <textarea
+                        id="matter" name="matter" placeholder="Describe your matter" rows="2"
+                        required minlength="8" maxlength="200" style="height:36px;"
+                    ></textarea>
+
                     <button type="submit" class="pay-btn">Pay Now</button>
                 </form>
             </div>
@@ -211,6 +218,7 @@
             const mobile = document.getElementById('mobile').value.trim();
             const email = document.getElementById('email').value.trim();
             const address = document.getElementById('address').value.trim();
+            const matter = document.getElementById('matter').value.trim();
 
             // Rs.499 = 49900 paise
             const amount = 49900;
@@ -230,7 +238,8 @@
                     "contact": mobile
                 },
                 "notes": {
-                    "address": address
+                    "address": address,
+                    "matter": matter
                 },
                 "theme": {
                     "color": "#244675",
@@ -250,3 +259,4 @@
     </script>
 </body>
 </html>
+```
