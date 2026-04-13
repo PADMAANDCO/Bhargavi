@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document Vault Preview | Padmavati & Co</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1F4E79;
+      --secondary: #216093;
+      --accent: #65eaff;
+      --text: #333;
+      --muted: #6b7280;
+      --light-bg: #f5f7fb;
+      --card-bg: #ffffff;
+      --danger: #c0392b;
+      --border: #e5e7eb;
+      --shadow: 0 6px 18px rgba(31, 78, 121, 0.08);
+      --radius: 10px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+      background: var(--light-bg);
+      color: var(--text);
+      line-height: 1.55;
+      min-height: 100vh;
+    }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Preview tabs */
+    .preview-bar {
+      background: #0f2a44;
+      color: #fff;
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 5000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    .preview-bar .label {
+      font-size: 0.85rem;
+      color: var(--accent);
+      margin-right: 0.5rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .preview-bar button {
+      background: transparent;
+      color: #cfd8e3;
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 0.4rem 0.9rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all .2s;
+    }
+    .preview-bar button:hover { background: rgba(255,255,255,0.08); color: #fff; }
+    .preview-bar button.active {
+      background: var(--accent);
+      color: #0f2a44;
+      border-color: var(--accent);
+      font-weight: 600;
+    }
+
+    .screen { display: none; }
+    .screen.active { display: block; }
+
+    /* Navbar */
+    .navbar {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: #fff;
+      padding: 0.9rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: var(--shadow);
+    }
+    .navbar .brand { color: #fff; font-weight: 700; font-size: 1.2rem; letter-spacing: 0.4px; }
+    .navbar .brand span { color: var(--accent); }
+    .navbar .nav-right { display: flex; gap: 1rem; align-items: center; font-size: 0.95rem; }
+    .navbar .nav-right a { color: #fff; }
+    .navbar .badge {
+      background: rgba(255,255,255,0.15);
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+    }
+    .container { max-width: 1100px; margin: 2rem auto; padding: 0 1.25rem; }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .card h2 { color: var(--primary); margin-bottom: 1rem; font-size: 1.25rem; }
+
+    .btn {
+      display: inline-block;
+      padding: 0.55rem 1.1rem;
+      border-radius: 8px;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 500;
+      text-decoration: none;
+      font-family: inherit;
+    }
+    .btn:hover { background: var(--secondary); text-decoration: none; }
+    .btn.btn-danger { background: var(--danger); }
+    .btn.btn-ghost { background: transparent; color: var(--primary); border: 1px solid var(--primary); }
+    .btn.small { padding: 0.35rem 0.75rem; font-size: 0.85rem; }
+
+    .form-group { margin-bottom: 1rem; }
+    .form-group label {
+      display: block; font-weight: 500; margin-bottom: 0.35rem;
+      color: var(--primary); font-size: 0.9rem;
+    }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 0.65rem 0.9rem;
+      border: 1px solid var(--border); border-radius: 8px;
+      font-size: 0.95rem; font-family: inherit; background: #fff;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      border-color: var(--primary); outline: none;
+      box-shadow: 0 0 0 3px rgba(31, 78, 121, 0.1);
+    }
+
+    table { width: 100%; border-collapse: collapse; background: #fff; }
+    table th, table td {
+      padding: 0.75rem 0.9rem; text-align: left;
+      border-bottom: 1px solid var(--border); font-size: 0.93rem;
+    }
+    table th { background: #f1f5f9; color: var(--primary); font-weight: 600; }
+    table tr:hover { background: #fafbfd; }
+
+    .flash {
+      padding: 0.75rem 1rem; border-radius: 8px;
+      margin-bottom: 0.75rem; font-size: 0.93rem;
+    }
+    .flash.success { background: #e8f6ef; color: #1d7a45; border: 1px solid #b8e0ca; }
+    .flash.error { background: #fdecea; color: #9b2116; border: 1px solid #f5c2bc; }
+
+    .login-wrap {
+      min-height: calc(100vh - 120px);
+      display: flex; align-items: center; justify-content: center; padding: 2rem;
+    }
+    .login-card {
+      background: #fff; border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(31, 78, 121, 0.12);
+      padding: 2.5rem; max-width: 420px; width: 100%;
+    }
+    .login-card h1 { color: var(--primary); margin-bottom: 0.5rem; font-size: 1.5rem; text-align: center; }
+    .login-card p.sub { color: var(--muted); font-size: 0.9rem; text-align: center; margin-bottom: 1.5rem; }
+    .login-card .btn { width: 100%; }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem; margin-bottom: 1.5rem;
+    }
+    .stat-card {
+      background: #fff; border-radius: var(--radius);
+      box-shadow: var(--shadow); padding: 1.2rem;
+      border-left: 4px solid var(--primary);
+    }
+    .stat-card .label { color: var(--muted); font-size: 0.85rem; }
+    .stat-card .value { font-size: 1.8rem; color: var(--primary); font-weight: 700; }
+
+    .category-block { margin-bottom: 1.5rem; }
+    .category-block .cat-header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: #fff; padding: 0.65rem 1rem;
+      border-radius: 8px 8px 0 0; font-weight: 600;
+    }
+    .category-block .cat-body {
+      background: #fff; border: 1px solid var(--border);
+      border-top: none; border-radius: 0 0 8px 8px;
+    }
+    .empty { color: var(--muted); font-style: italic; padding: 0.9rem; font-size: 0.9rem; }
+
+    .page-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 1.25rem; flex-wrap: wrap; gap: 0.75rem;
+    }
+    .page-header h1 { color: var(--primary); font-size: 1.5rem; }
+    .muted { color: var(--muted); font-size: 0.85rem; }
+    .upload-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    }
+    .inline-form { display: inline; }
+
+    .preview-note {
+      background: #fff7e6; border: 1px solid #ffd591;
+      color: #8a5c00; padding: 0.75rem 1rem;
+      border-radius: 8px; font-size: 0.88rem;
+      margin-bottom: 1rem;
+    }
+    @media (max-width: 640px) { .upload-row { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<!-- Preview navigation -->
+<div class="preview-bar">
+  <span class="label">DEMO PREVIEW:</span>
+  <button class="tab-btn active" data-screen="login">1. Login</button>
+  <button class="tab-btn" data-screen="admin">2. Admin Dashboard</button>
+  <button class="tab-btn" data-screen="newclient">3. Add Client</button>
+  <button class="tab-btn" data-screen="vault">4. Client Vault (Admin View)</button>
+  <button class="tab-btn" data-screen="mydocs">5. Client Login View</button>
+  <span style="margin-left:auto; font-size:0.8rem; opacity:0.7;">Click tabs to walk through each screen</span>
+</div>
+
+<!-- =================== 1. LOGIN =================== -->
+<div class="screen active" id="screen-login">
+  <nav class="navbar">
+    <a class="brand" href="#">Padmavati &amp; Co <span>Vault</span></a>
+    <div class="nav-right"><a href="#">Login</a></div>
+  </nav>
+  <div class="login-wrap">
+    <div class="login-card">
+      <h1>Secure Document Vault</h1>
+      <p class="sub">Sign in to access your documents</p>
+      <form onsubmit="event.preventDefault(); showScreen('admin');">
+        <div class="form-group">
+          <label>Username</label>
+          <input type="text" value="admin">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" value="admin123">
+        </div>
+        <button class="btn" type="submit">Sign In</button>
+      </form>
+      <p class="muted" style="margin-top:1.25rem; text-align:center;">
+        Both auditors and clients use this same login.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- =================== 2. ADMIN DASHBOARD =================== -->
+<div class="screen" id="screen-admin">
+  <nav class="navbar">
+    <a class="brand" href="#">Padmavati &amp; Co <span>Vault</span></a>
+    <div class="nav-right">
+      <span class="badge">Admin</span>
+      <span>Padmavati &amp; Co Admin</span>
+      <a href="#" onclick="showScreen('login'); return false;">Logout</a>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="flash success">Welcome back, Padmavati &amp; Co Admin.</div>
+    <div class="page-header">
+      <h1>Clients</h1>
+      <a class="btn" href="#" onclick="showScreen('newclient'); return false;">+ Add New Client</a>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card"><div class="label">Total Clients</div><div class="value">3</div></div>
+      <div class="stat-card"><div class="label">Total Documents</div><div class="value">14</div></div>
+    </div>
+    <div class="card">
+      <table>
+        <thead>
+          <tr>
+            <th>Full Name</th><th>Username</th><th>Company</th>
+            <th>Email / Phone</th><th>Documents</th><th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Rajesh Kumar</td><td>rajesh_k</td><td>Kumar Traders</td>
+            <td>rajesh@kumartraders.in<br><span class="muted">9876543210</span></td>
+            <td>7</td>
+            <td><a class="btn small" href="#" onclick="showScreen('vault'); return false;">Open Vault</a></td>
+          </tr>
+          <tr>
+            <td>Sunita Devi</td><td>sunita.d</td><td>Devi Exports</td>
+            <td>accounts@deviexports.com<br><span class="muted">9811122233</span></td>
+            <td>4</td>
+            <td><a class="btn small" href="#" onclick="showScreen('vault'); return false;">Open Vault</a></td>
+          </tr>
+          <tr>
+            <td>Acme Pvt Ltd</td><td>acme</td><td>Acme Pvt Ltd</td>
+            <td>ceo@acme.com<br><span class="muted">9999000011</span></td>
+            <td>3</td>
+            <td><a class="btn small" href="#" onclick="showScreen('vault'); return false;">Open Vault</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- =================== 3. CREATE CLIENT =================== -->
+<div class="screen" id="screen-newclient">
+  <nav class="navbar">
+    <a class="brand" href="#">Padmavati &amp; Co <span>Vault</span></a>
+    <div class="nav-right">
+      <span class="badge">Admin</span>
+      <span>Padmavati &amp; Co Admin</span>
+      <a href="#" onclick="showScreen('login'); return false;">Logout</a>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="page-header">
+      <h1>Create Client Account</h1>
+      <a class="btn btn-ghost" href="#" onclick="showScreen('admin'); return false;">← Back</a>
+    </div>
+    <div class="card">
+      <form onsubmit="event.preventDefault(); showScreen('admin');">
+        <div class="upload-row">
+          <div class="form-group">
+            <label>Client Full Name *</label>
+            <input value="Mahesh Industries">
+          </div>
+          <div class="form-group">
+            <label>Company / Firm</label>
+            <input value="Mahesh Industries Pvt Ltd">
+          </div>
+        </div>
+        <div class="upload-row">
+          <div class="form-group">
+            <label>Login Username *</label>
+            <input value="mahesh_ind">
+          </div>
+          <div class="form-group">
+            <label>Login Password *</label>
+            <input type="password" value="strongpass123">
+          </div>
+        </div>
+        <div class="upload-row">
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" value="accounts@maheshind.in">
+          </div>
+          <div class="form-group">
+            <label>Phone</label>
+            <input value="9823456712">
+          </div>
+        </div>
+        <button class="btn" type="submit">Create Client</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- =================== 4. CLIENT VAULT (ADMIN VIEW) =================== -->
+<div class="screen" id="screen-vault">
+  <nav class="navbar">
+    <a class="brand" href="#">Padmavati &amp; Co <span>Vault</span></a>
+    <div class="nav-right">
+      <span class="badge">Admin</span>
+      <span>Padmavati &amp; Co Admin</span>
+      <a href="#" onclick="showScreen('login'); return false;">Logout</a>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="flash success">Uploaded 2 file(s) to 'GST Returns'.</div>
+    <div class="page-header">
+      <h1>Rajesh Kumar</h1>
+      <a class="btn btn-ghost" href="#" onclick="showScreen('admin'); return false;">← All Clients</a>
+    </div>
+
+    <div class="card">
+      <h2>Client Details</h2>
+      <p><strong>Username:</strong> rajesh_k</p>
+      <p><strong>Company:</strong> Kumar Traders</p>
+      <p><strong>Email:</strong> rajesh@kumartraders.in</p>
+      <p><strong>Phone:</strong> 9876543210</p>
+      <p class="muted">Vault folder: <code>rajesh_k_8af21c30</code></p>
+      <div style="margin-top:1rem; display:flex; gap:0.75rem; flex-wrap:wrap;">
+        <form class="inline-form" onsubmit="event.preventDefault(); alert('Password reset (demo)');">
+          <input placeholder="New password" style="padding:0.5rem; border-radius:6px; border:1px solid var(--border);">
+          <button class="btn small" type="submit">Reset Password</button>
+        </form>
+        <form class="inline-form" onsubmit="event.preventDefault(); alert('Client deletion (demo)');">
+          <button class="btn small btn-danger" type="submit">Delete Client</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Upload Documents</h2>
+      <form onsubmit="event.preventDefault(); alert('File(s) uploaded (demo)');">
+        <div class="upload-row">
+          <div class="form-group">
+            <label>Category</label>
+            <select>
+              <option>IT Returns</option>
+              <option selected>GST Returns</option>
+              <option>Computations</option>
+              <option>Statutory Returns</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Files (you can select multiple)</label>
+            <input type="file" multiple>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Note (optional)</label>
+          <textarea rows="2" placeholder="e.g. AY 2024-25 ITR filed">GSTR-3B for March 2026</textarea>
+        </div>
+        <button class="btn" type="submit">Upload</button>
+      </form>
+    </div>
+
+    <h2 style="color:var(--primary); margin-bottom:1rem;">Documents</h2>
+
+    <div class="category-block">
+      <div class="cat-header">IT Returns (2)</div>
+      <div class="cat-body">
+        <table>
+          <thead>
+            <tr><th>File</th><th>Size</th><th>Uploaded</th><th>Note</th><th>Action</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>ITR-3_AY2024-25.pdf</td><td>412.3 KB</td>
+              <td>12 Jul 2025, 14:05<br><span class="muted">by admin</span></td>
+              <td>Filed ack no. 123456789</td>
+              <td>
+                <a class="btn small" href="#">Download</a>
+                <button class="btn small btn-danger" onclick="alert('Deleted (demo)');">Delete</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Form_26AS.pdf</td><td>180.9 KB</td>
+              <td>10 Jul 2025, 11:20<br><span class="muted">by admin</span></td>
+              <td></td>
+              <td>
+                <a class="btn small" href="#">Download</a>
+                <button class="btn small btn-danger" onclick="alert('Deleted (demo)');">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="category-block">
+      <div class="cat-header">Computations (1)</div>
+      <div class="cat-body">
+        <table>
+          <thead><tr><th>File</th><th>Size</th><th>Uploaded</th><th>Note</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Computation_AY2024-25.xlsx</td><td>64.1 KB</td>
+              <td>12 Jul 2025, 14:00<br><span class="muted">by admin</span></td>
+              <td>Income tax computation sheet</td>
+              <td>
+                <a class="btn small" href="#">Download</a>
+                <button class="btn small btn-danger" onclick="alert('Deleted (demo)');">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="category-block">
+      <div class="cat-header">GST Returns (3)</div>
+      <div class="cat-body">
+        <table>
+          <thead><tr><th>File</th><th>Size</th><th>Uploaded</th><th>Note</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>GSTR-3B_Mar2026.pdf</td><td>88.4 KB</td>
+              <td>13 Apr 2026, 09:15<br><span class="muted">by admin</span></td>
+              <td>GSTR-3B for March 2026</td>
+              <td>
+                <a class="btn small" href="#">Download</a>
+                <button class="btn small btn-danger" onclick="alert('Deleted (demo)');">Delete</button>
+              </td>
+            </tr>
+            <tr>
+              <td>GSTR-1_Mar2026.pdf</td><td>120.7 KB</td>
+              <td>13 Apr 2026, 09:14<br><span class="muted">by admin</span></td>
+              <td>GSTR-1 for March 2026</td>
+              <td>
+                <a class="btn small" href="#">Download</a>
+                <button class="btn small btn-danger" onclick="alert('Deleted (demo)');">Delete</button>
+              </td>
+            </tr>
+            <tr>
+              <td>GST_Annual_FY24-25.pdf</td><td>512.0 KB</td>
+              <td>20 Dec 2025, 17:40<br><span class="muted">by admin</span></td>
+              <td>GSTR-9 annual return</td>
+              <td>
+                <a class="btn small" href="#">Download</a>
+                <button class="btn small btn-danger" onclick="alert('Deleted (demo)');">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="category-block">
+      <div class="cat-header">Statutory Returns (1)</div>
+      <div class="cat-body">
+        <table>
+          <thead><tr><th>File</th><th>Size</th><th>Uploaded</th><th>Note</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>TDS_Q4_FY24-25.pdf</td><td>205.6 KB</td>
+              <td>05 May 2025, 10:30<br><span class="muted">by admin</span></td>
+              <td>26Q for Q4</td>
+              <td>
+                <a class="btn small" href="#">Download</a>
+                <button class="btn small btn-danger" onclick="alert('Deleted (demo)');">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="category-block">
+      <div class="cat-header">Other (0)</div>
+      <div class="cat-body"><div class="empty">No documents in this category yet.</div></div>
+    </div>
+
+    <div class="preview-note">
+      <strong>Preview tip:</strong> click the <em>5. Client Login View</em> tab above
+      to see what this same client, Rajesh Kumar, sees when he logs in with his
+      own username.
+    </div>
+  </div>
+</div>
+
+<!-- =================== 5. CLIENT DASHBOARD =================== -->
+<div class="screen" id="screen-mydocs">
+  <nav class="navbar">
+    <a class="brand" href="#">Padmavati &amp; Co <span>Vault</span></a>
+    <div class="nav-right">
+      <span class="badge">Client</span>
+      <span>Rajesh Kumar</span>
+      <a href="#" onclick="showScreen('login'); return false;">Logout</a>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="flash success">Welcome back, Rajesh Kumar.</div>
+
+    <div class="page-header">
+      <h1>My Documents</h1>
+      <span class="muted">Welcome, Rajesh Kumar (Kumar Traders)</span>
+    </div>
+
+    <div class="card">
+      <p>
+        These are the documents your auditor at <strong>Padmavati &amp; Co</strong>
+        has uploaded to your private vault. Click <em>Download</em> on any file to
+        save it. Nobody else can see or access these files.
+      </p>
+    </div>
+
+    <div class="category-block">
+      <div class="cat-header">IT Returns (2)</div>
+      <div class="cat-body">
+        <table>
+          <thead><tr><th>File</th><th>Size</th><th>Uploaded</th><th>Note</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>ITR-3_AY2024-25.pdf</td><td>412.3 KB</td>
+              <td>12 Jul 2025, 14:05</td>
+              <td>Filed ack no. 123456789</td>
+              <td><a class="btn small" href="#">Download</a></td>
+            </tr>
+            <tr>
+              <td>Form_26AS.pdf</td><td>180.9 KB</td>
+              <td>10 Jul 2025, 11:20</td>
+              <td></td>
+              <td><a class="btn small" href="#">Download</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="category-block">
+      <div class="cat-header">Computations (1)</div>
+      <div class="cat-body">
+        <table>
+          <thead><tr><th>File</th><th>Size</th><th>Uploaded</th><th>Note</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Computation_AY2024-25.xlsx</td><td>64.1 KB</td>
+              <td>12 Jul 2025, 14:00</td>
+              <td>Income tax computation sheet</td>
+              <td><a class="btn small" href="#">Download</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="category-block">
+      <div class="cat-header">GST Returns (3)</div>
+      <div class="cat-body">
+        <table>
+          <thead><tr><th>File</th><th>Size</th><th>Uploaded</th><th>Note</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>GSTR-3B_Mar2026.pdf</td><td>88.4 KB</td>
+              <td>13 Apr 2026, 09:15</td>
+              <td>GSTR-3B for March 2026</td>
+              <td><a class="btn small" href="#">Download</a></td>
+            </tr>
+            <tr>
+              <td>GSTR-1_Mar2026.pdf</td><td>120.7 KB</td>
+              <td>13 Apr 2026, 09:14</td>
+              <td>GSTR-1 for March 2026</td>
+              <td><a class="btn small" href="#">Download</a></td>
+            </tr>
+            <tr>
+              <td>GST_Annual_FY24-25.pdf</td><td>512.0 KB</td>
+              <td>20 Dec 2025, 17:40</td>
+              <td>GSTR-9 annual return</td>
+              <td><a class="btn small" href="#">Download</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="category-block">
+      <div class="cat-header">Statutory Returns (1)</div>
+      <div class="cat-body">
+        <table>
+          <thead><tr><th>File</th><th>Size</th><th>Uploaded</th><th>Note</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>TDS_Q4_FY24-25.pdf</td><td>205.6 KB</td>
+              <td>05 May 2025, 10:30</td>
+              <td>26Q for Q4</td>
+              <td><a class="btn small" href="#">Download</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="category-block">
+      <div class="cat-header">Other (0)</div>
+      <div class="cat-body"><div class="empty">No documents in this category yet.</div></div>
+    </div>
+
+    <div class="preview-note">
+      <strong>Notice:</strong> the client sees only their own documents, grouped by
+      category, and they cannot upload, delete, or view any other client's data.
+    </div>
+  </div>
+</div>
+
+<script>
+  function showScreen(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById('screen-' + id).classList.add('active');
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    const btn = document.querySelector('.tab-btn[data-screen="' + id + '"]');
+    if (btn) btn.classList.add('active');
+    window.scrollTo(0, 0);
+  }
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => showScreen(btn.dataset.screen));
+  });
+</script>
+</body>
+</html>
