@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}My Documents{% endblock %}
+{% block content %}
+<div class="page-header">
+  <h1>My Documents</h1>
+  <span class="muted">Welcome, {{ current_user.full_name }}{% if current_user.company %} ({{ current_user.company }}){% endif %}</span>
+</div>
+
+<div class="card">
+  <p>
+    These are the documents your auditor at <strong>Padmavati &amp; Co</strong>
+    has uploaded to your private vault. Click <em>Download</em> on any file to
+    save it. Nobody else can see or access these files.
+  </p>
+</div>
+
+{% for cat in categories %}
+  <div class="category-block">
+    <div class="cat-header">{{ cat }} ({{ docs_by_category[cat]|length }})</div>
+    <div class="cat-body">
+      {% if docs_by_category[cat] %}
+        <table>
+          <thead>
+            <tr>
+              <th>File</th>
+              <th>Size</th>
+              <th>Uploaded</th>
+              <th>Note</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for d in docs_by_category[cat] %}
+              <tr>
+                <td>{{ d.original_name }}</td>
+                <td>{{ d.size_bytes|humansize }}</td>
+                <td>{{ d.uploaded_at.strftime('%d %b %Y, %H:%M') }}</td>
+                <td>{{ d.note or '' }}</td>
+                <td>
+                  <a class="btn small" href="{{ url_for('download_document', doc_id=d.id) }}">Download</a>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <div class="empty">No documents in this category yet.</div>
+      {% endif %}
+    </div>
+  </div>
+{% endfor %}
+{% endblock %}

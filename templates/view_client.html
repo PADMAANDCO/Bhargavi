@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block title %}{{ client.full_name }}{% endblock %}
+{% block content %}
+<div class="page-header">
+  <h1>{{ client.full_name }}</h1>
+  <a class="btn btn-ghost" href="{{ url_for('admin_dashboard') }}">← All Clients</a>
+</div>
+
+<div class="card">
+  <h2>Client Details</h2>
+  <p><strong>Username:</strong> {{ client.username }}</p>
+  <p><strong>Company:</strong> {{ client.company or '—' }}</p>
+  <p><strong>Email:</strong> {{ client.email or '—' }}</p>
+  <p><strong>Phone:</strong> {{ client.phone or '—' }}</p>
+  <p class="muted">Vault folder: <code>{{ client.vault_folder }}</code></p>
+
+  <div style="margin-top:1rem; display:flex; gap:0.75rem; flex-wrap:wrap;">
+    <form class="inline-form" method="POST"
+          action="{{ url_for('reset_client_password', client_id=client.id) }}"
+          onsubmit="return confirm('Reset password for this client?');">
+      <input name="new_password" placeholder="New password" minlength="6" required style="padding:0.5rem; border-radius:6px; border:1px solid var(--border);">
+      <button class="btn small" type="submit">Reset Password</button>
+    </form>
+    <form class="inline-form" method="POST"
+          action="{{ url_for('delete_client', client_id=client.id) }}"
+          onsubmit="return confirm('Permanently delete this client and ALL their documents?');">
+      <button class="btn small btn-danger" type="submit">Delete Client</button>
+    </form>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Upload Documents</h2>
+  <form method="POST"
+        action="{{ url_for('upload_document', client_id=client.id) }}"
+        enctype="multipart/form-data">
+    <div class="upload-row">
+      <div class="form-group">
+        <label for="category">Category</label>
+        <select id="category" name="category" required>
+          {% for cat in categories %}
+            <option value="{{ cat }}">{{ cat }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="file">Files (you can select multiple)</label>
+        <input id="file" name="file" type="file" multiple required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="note">Note (optional)</label>
+      <textarea id="note" name="note" rows="2" placeholder="e.g. AY 2024-25 ITR filed"></textarea>
+    </div>
+    <button class="btn" type="submit">Upload</button>
+  </form>
+</div>
+
+<h2 style="color:var(--primary); margin-bottom:1rem;">Documents</h2>
+{% for cat in categories %}
+  <div class="category-block">
+    <div class="cat-header">{{ cat }} ({{ docs_by_category[cat]|length }})</div>
+    <div class="cat-body">
+      {% if docs_by_category[cat] %}
+        <table>
+          <thead>
+            <tr>
+              <th>File</th>
+              <th>Size</th>
+              <th>Uploaded</th>
+              <th>Note</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for d in docs_by_category[cat] %}
+              <tr>
+                <td>{{ d.original_name }}</td>
+                <td>{{ d.size_bytes|humansize }}</td>
+                <td>{{ d.uploaded_at.strftime('%d %b %Y, %H:%M') }}<br><span class="muted">by {{ d.uploaded_by }}</span></td>
+                <td>{{ d.note or '' }}</td>
+                <td>
+                  <a class="btn small" href="{{ url_for('download_document', doc_id=d.id) }}">Download</a>
+                  <form class="inline-form" method="POST"
+                        action="{{ url_for('delete_document', doc_id=d.id) }}"
+                        onsubmit="return confirm('Delete this document?');">
+                    <button class="btn small btn-danger" type="submit">Delete</button>
+                  </form>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <div class="empty">No documents in this category yet.</div>
+      {% endif %}
+    </div>
+  </div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}New Client{% endblock %}
+{% block content %}
+<div class="page-header">
+  <h1>Create Client Account</h1>
+  <a class="btn btn-ghost" href="{{ url_for('admin_dashboard') }}">← Back</a>
+</div>
+
+<div class="card">
+  <form method="POST">
+    <div class="upload-row">
+      <div class="form-group">
+        <label for="full_name">Client Full Name *</label>
+        <input id="full_name" name="full_name" required>
+      </div>
+      <div class="form-group">
+        <label for="company">Company / Firm</label>
+        <input id="company" name="company">
+      </div>
+    </div>
+    <div class="upload-row">
+      <div class="form-group">
+        <label for="username">Login Username *</label>
+        <input id="username" name="username" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Login Password *</label>
+        <input id="password" name="password" type="password" required minlength="6">
+      </div>
+    </div>
+    <div class="upload-row">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email">
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input id="phone" name="phone">
+      </div>
+    </div>
+    <button class="btn" type="submit">Create Client</button>
+  </form>
+</div>
+{% endblock %}
